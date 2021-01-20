@@ -1,0 +1,35 @@
+*{
+    font-family: 'Phetsarath OT';
+}
+.bg-main{
+    background-color: #FF6246;
+}
+.bd-radius-1{
+    border-radius: 3px;
+}
+.bd-radius-2{
+    border-radius: 5px;
+}
+.navbar img{
+    height: 3em;
+}
+.navbar-toggler img{width: 1.7em;}
+.min-h-1{min-height: 3em;}
+.post-profile{
+    width: 3em;
+}
+.profile-name{
+    font-size: 1.3em;
+}
+.text-1em{font-size: 1em;}
+.text-1e2m{font-size: 1.2em;}
+.text-1e3m{font-size: 1.3em;}
+.text-1e5m{font-size: 1.5em;}
+.text-1e9m{font-size: 1.9em;}
+.text-3e5m{font-size: 3.5em;}
+.blog-textarea{
+    resize: none;
+}
+.btn-c-padding{
+    padding: .3em .75em;
+}
