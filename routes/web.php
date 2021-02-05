@@ -76,5 +76,6 @@ Route::get('/getbuildings', [GetDataController::class, 'buildings']);
 Route::get('/getclassrooms/{building}', [GetDataController::class, 'classrooms']);
 Route::get('/getsubjects/{major_id}', [GetDataController::class, 'subjects']);
 Route::get('/getteachers/{subject_id}', [GetDataController::class, 'teachers']);
+Route::get('/searchusers/{search}', [GetDataController::class, 'users']);
 
 Route::post('/calcelteaching/{id}', [ScheduleController::class, 'cancelTeaching']);

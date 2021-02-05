@@ -55,7 +55,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="/showschedule">ຕາຕະລາງ</a>
                                 </li>
-                                @if(count(Auth::user()->teachSchedules->toQuery()->where('date', '>=', date('Y-m-d'))->get()))
+                                @if(Auth::user()->teachSchedules->count()? Auth::user()->teachSchedules->toQuery()->where('date', '>=', date('Y-m-d'))->get()->count():false)
                                     <li class="nav-item">
                                         <a class="nav-link" href="/showteachschedule">ຕາຕະລາງສອນ</a>
                                     </li>

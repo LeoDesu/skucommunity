@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\Major;
 use App\Models\Subject;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,5 +33,8 @@ class GetDataController extends Controller
     public function teachers($subject_id){
         if(Subject::find($subject_id)) return response()->json(Subject::find($subject_id)->teachers);
         else return abort(404);
+    }
+    public function users($search){
+        return User::where('name', 'like', $search == ''? '':"%$search%")->orderBy('name')->get();
     }
 }

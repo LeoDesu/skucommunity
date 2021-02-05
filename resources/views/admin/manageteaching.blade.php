@@ -3,6 +3,7 @@
 
 @section('content')
 <div class="container pt-3">
+    @livewireStyles
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -12,12 +13,12 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <select-major />
-                    </div>
+                        {{-- @livewire('search-and-select-user') --}}
+                        <search-user-box/>
                 </div>
             </div>
         </div>
     </div>
+    @livewireScripts
 </div>
 @endsection
