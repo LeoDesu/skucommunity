@@ -8,7 +8,7 @@
 
 ### Installation
 - clone this project then open cmd/terminal inside this project's root folder.
-you can use clone button or by running this command:
+you can use clone by using button Code > Download zip or by running this command:
 ```
 git clone https://github.com/LeoDesu/skucommunity.git
 ```
@@ -37,7 +37,7 @@ php artisan serve
 
 ### ການຕິດຕັ້ງ
 - ດາວໂຫລດໂປຣເຈັກນີ້ແລ້ວເປີດ cmd/terminal ພາຍໃນ root folder ຂອງໂປຣເຈັກນີ້.
-ເຈົ້າສາມາດໂຫຼດໂດຍໃຊ້ປຸ່ມໂຫຼດ ຫຼືວ່າ ດ້ວຍການລັນຄໍາສັ່ງ:
+ເຈົ້າສາມາດໂຫຼດໂດຍໃຊ້ປຸ່ມ Code > Download zip ຫຼືວ່າ ດ້ວຍການລັນຄໍາສັ່ງ:
 ```
 git clone https://github.com/LeoDesu/skucommunity.git
 ```
