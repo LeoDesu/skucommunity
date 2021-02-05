@@ -34,7 +34,13 @@ class GetDataController extends Controller
         if(Subject::find($subject_id)) return response()->json(Subject::find($subject_id)->teachers);
         else return abort(404);
     }
-    public function users($search){
+    public function user($id){
+        return User::find($id);
+    }
+    public function searchusers($search){
         return User::where('name', 'like', $search == ''? '':"%$search%")->orderBy('name')->get();
+    }
+    public function searchsubjects($search){
+        return Subject::where('name', 'like', $search == ''? '':"%$search%")->orderBy('name')->get();
     }
 }

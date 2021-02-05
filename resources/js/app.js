@@ -26,6 +26,8 @@ Vue.component('cancel-teaching-button', require('./components/CancelTeachingButt
 Vue.component('insert-classroom-button', require('./components/admin/InsertClassroomButton.vue').default);
 Vue.component('insert-subject-button', require('./components/admin/InsertSubjectButton.vue').default);
 Vue.component('search-user-box', require('./components/SearchUserBox.vue').default);
+Vue.component('select-user-by-search', require('./components/admin/SelectUserBySearch.vue').default);
+Vue.component('select-subject-by-search', require('./components/admin/SelectSubjectBySearch.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

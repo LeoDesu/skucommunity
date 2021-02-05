@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row mb-2"><a href="/insertmajor" class="btn btn-info text-1em w-100">ເພີ່ມຄະນະ ແລະ ສາຂາວິຊາຮຽນ</a></div>
-                                    <div class="row mb-2"><a href="/insertmajor" class="btn btn-info text-1em w-100">ຈັດການວິຊາຮຽນຂອງສາຂາ</a></div>
+                                    <div class="row mb-2"><a href="/managesubjects" class="btn btn-info text-1em w-100">ຈັດການວິຊາຮຽນຂອງສາຂາ</a></div>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row mb-2"><a href="/insertschedule" class="btn btn-info text-1em w-100">ເພິ່ມຊົ່ວໂມງຮຽນ</a></div>
-                                    <div class="row mb-2"><a href="#" class="btn btn-info text-1em w-100">ຈັດການເວລາການຮຽນ</a></div>
+                                    <div class="row mb-2"><a href="#" class="btn btn-info text-1em w-100">ແກ້ໄຂຕາຕະລາງ</a></div>
                                 </div>
                             </div>
                         </div>

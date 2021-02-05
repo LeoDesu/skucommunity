@@ -58,6 +58,9 @@ Route::get('/dashboard', [AdminController::class, 'dashboard']);
 Route::get('/adduser', [AddUserController::class, 'index']);
 Route::post('/adduser', [AddUserController::class, 'create']);
 Route::get('/manageteaching', [AdminController::class, 'manageTeaching']);
+Route::post('/manageteaching', [AdminController::class, 'manageTeachingFor']);
+Route::get('/managesubjects', [AdminController::class, 'manageSubjects']);
+Route::post('/managesubjects', [AdminController::class, 'manageSubjectsFor']);
 
 Route::get('/insertdata', [InsertDataController::class, 'index']);
 Route::get('/insertsubject', [InsertDataController::class, 'insertSubjectPanel']);
@@ -76,6 +79,9 @@ Route::get('/getbuildings', [GetDataController::class, 'buildings']);
 Route::get('/getclassrooms/{building}', [GetDataController::class, 'classrooms']);
 Route::get('/getsubjects/{major_id}', [GetDataController::class, 'subjects']);
 Route::get('/getteachers/{subject_id}', [GetDataController::class, 'teachers']);
-Route::get('/searchusers/{search}', [GetDataController::class, 'users']);
+Route::get('/getuser/{id}', [GetDataController::class, 'user']);
+//search
+Route::get('/searchusers/{search}', [GetDataController::class, 'searchusers']);
+Route::get('/searchsubjects/{search}', [GetDataController::class, 'searchsubjects']);
 
 Route::post('/calcelteaching/{id}', [ScheduleController::class, 'cancelTeaching']);

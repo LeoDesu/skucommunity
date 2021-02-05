@@ -90,7 +90,7 @@ class AddUserController extends Controller
     {
         $data = $this->validator($request);
 
-        return User::create([
+        if(User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
             'gender' => $data['gender'],
@@ -101,6 +101,7 @@ class AddUserController extends Controller
             'tel' => $data['tel'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
+        ])) return redirect('/dashboard');
+        else return redirect('/adduser');
     }
 }
