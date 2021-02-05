@@ -99,7 +99,8 @@ class InsertDataController extends Controller
         ]);
         $schedule = Schedule::where('date', $request->date)->where('starttime', $request->starttime)->where('user_id', $request->user_id)->first();
         foreach ($request->major_id as $id) {
-            $schedule->majors()->attach($id);
+            if(!$schedule->majors->contains($id))
+                $schedule->majors()->attach($id);
         }
         return redirect('/dashboard');
     }

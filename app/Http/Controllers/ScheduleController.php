@@ -89,7 +89,10 @@ class ScheduleController extends Controller{
         $endtimes = [];
         foreach($week as $date){
             if($major == null) $schedules = Schedule::where('date', $date)->orderBy('starttime')->get();
-            else $schedules = $major->schedules->toQuery()->where('date', $date)->orderBy('starttime')->get();
+            else {
+                $schedules = $major->schedules;
+                if($schedules->count() > 0) $schedules = $schedules->toQuery()->where('date', $date)->orderBy('starttime')->get();
+            }
             foreach($schedules as $key => $i){
                 if(!in_array($i->starttime, $starttimes) && !in_array($i->endtime, $endtimes)){
                     array_push($starttimes, $i->starttime);
@@ -97,6 +100,7 @@ class ScheduleController extends Controller{
                 }
             }
         }
+        asort($starttimes);
         foreach($starttimes as $key => $starttime){
             $times[$key] = ['starttime' => $starttime, 'endtime' => $endtimes[$key]];
         }
@@ -126,7 +130,7 @@ class ScheduleController extends Controller{
      * @param string $date string of date in format of yyyy-mm-dd
      * @return App\Models\Schedule created Schedule
      */
-    private function copySchedule(Schedule $schedule, string $date){
+    public static function copySchedule(Schedule $schedule, string $date){
         $newSchedule = Schedule::create([
             'date' => $date,
             'starttime' => $schedule->starttime,

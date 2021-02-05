@@ -32,5 +32,19 @@ class Schedule extends Model
     public function majors(){
         return $this->belongsToMany(Major::class);
     }
+    public function copyTo(string $date){
+        $newSchedule = Schedule::create([
+            'date' => $date,
+            'starttime' => $this->starttime,
+            'endtime' => $this->endtime,
+            'classroom_id' => $this->classroom_id,
+            'user_id' => $this->user_id,
+            'subject_id' => $this->subject_id
+        ]);
+        foreach($this->majors as $major){
+            $newSchedule->majors()->attach($major);
+        }
+        return $newSchedule;
+    }
 
 }

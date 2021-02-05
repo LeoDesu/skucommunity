@@ -61,6 +61,9 @@ Route::get('/manageteaching', [AdminController::class, 'manageTeaching']);
 Route::post('/manageteaching', [AdminController::class, 'manageTeachingFor']);
 Route::get('/managesubjects', [AdminController::class, 'manageSubjects']);
 Route::post('/managesubjects', [AdminController::class, 'manageSubjectsFor']);
+Route::get('/manageschedules', [AdminController::class, 'manageSchedules']);
+Route::post('/manageschedules', [AdminController::class, 'manageSchedulesFor']);
+
 
 Route::get('/insertdata', [InsertDataController::class, 'index']);
 Route::get('/insertsubject', [InsertDataController::class, 'insertSubjectPanel']);
