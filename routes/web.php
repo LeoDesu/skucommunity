@@ -42,6 +42,8 @@ Route::get('/createblog', [CreateBlogController::class, 'create']);
 Route::post('/createblog', [CreateBlogController::class, 'store']);
 Route::get('/trending', [BlogController::class, 'trending'])->name('trending');
 Route::get('/latest', [BlogController::class, 'latest'])->name('latest');
+Route::get('/announcements', [BlogController::class, 'announcements'])->name('announcements');
+Route::get('/myclass', [BlogController::class, 'myclass']);
 Route::get('/blog/{blog}', [BlogController::class, 'viewBlog']);
 Route::post('/upvote/{blog}', [BlogController::class, 'upvote']);
 Route::post('/downvote/{blog}', [BlogController::class, 'downvote']);

@@ -42933,7 +42933,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "label",
-        { staticClass: "col-form-label", attrs: { for: "students" } },
+        { staticClass: "ml-2 col-form-label", attrs: { for: "students" } },
         [_vm._v("ນັກຮຽນ")]
       ),
       _vm._v(" "),

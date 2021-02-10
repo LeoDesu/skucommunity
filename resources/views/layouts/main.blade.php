@@ -43,11 +43,11 @@
                                 <a class="nav-link" href="{{ route('latest') }}">ກະທູ້ລ່າສຸດ</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">ແຈ້ງການ</a>
+                                <a class="nav-link" href="{{ route('announcements') }}">ແຈ້ງການ</a>
                             </li>
                             @auth
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">ຫ້ອງຮຽນ</a>
+                                    <a class="nav-link" href="/myclass">ຫ້ອງຮຽນ</a>
                                 </li>
                                 {{-- <li class="nav-item">
                                     <a class="nav-link" href="#">ອາຈານປະຈໍາວິຊາ</a>
@@ -86,9 +86,6 @@
                                         <a href="/createblog" class="dropdown-item">ສ້າງກະທູ້</a>
                                         @if(Auth::user()->role == 'admin')
                                             <a href="/insertschedule" class="dropdown-item">ເພີ່ມຊົ່ວໂມງຮຽນ</a>
-                                            <a href="/insertsubject" class="dropdown-item">ເພີ່ມວິຊາຮຽນ</a>
-                                            <a href="/insertmajor" class="dropdown-item">ເພີ່ມສາຂາວິຊາຮຽນ</a>
-                                            <a href="/insertclassroom" class="dropdown-item">ເພີ່ມຫ້ອງຮຽນ</a>
                                             <a href="/dashboard" class="dropdown-item">ແຜງຄວບຄຸມ</a>
                                         @endif
                                         <a class="dropdown-item" href="{{ route('logout') }}"

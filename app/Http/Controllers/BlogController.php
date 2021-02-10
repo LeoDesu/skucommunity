@@ -26,6 +26,28 @@ class BlogController extends Controller
         return view('blogs.blogs', compact('blogs', 'title'));
     }
 
+    public function announcements(){
+        $title = 'ແຈ້ງການ';
+        $blogs = Blog::orderBy('created_at', 'desc')->get()->filter(
+            function($i){
+                return $i->author->role == 'admin';
+            }
+        );
+
+        return view('blogs.blogs', compact('blogs', 'title'));
+    }
+
+    public function myclass(){
+        $title = 'ຫ້ອງຮຽນ';
+        $blogs = Blog::orderBy('created_at', 'desc')->get()->filter(
+            function($i){
+                return $i->author->major_id == Auth::user()->major_id;
+            }
+        );
+
+        return view('blogs.blogs', compact('blogs', 'title'));
+    }
+
     public function viewBlog(Blog $blog){
         $ext = pathinfo($blog->attachment, PATHINFO_EXTENSION);
         $image = !strcasecmp($ext,'jpg') || !strcasecmp($ext, 'png') || !strcasecmp($ext, 'jpeg') || !strcasecmp($ext, 'gif');

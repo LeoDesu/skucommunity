@@ -6,7 +6,7 @@
         <div class="row form-group justify-content-center">
             <label class="col-form-label" for="teachers">ອາຈານ</label>        
             <input @change="searchUsers" v-model="teachers" type="checkbox" id="teachers">
-            <label class="col-form-label" for="students">ນັກຮຽນ</label>
+            <label class="ml-2 col-form-label" for="students">ນັກຮຽນ</label>
             <input @change="searchUsers" v-model="students" type="checkbox" id="students">
         </div>
         <div class="row form-group">

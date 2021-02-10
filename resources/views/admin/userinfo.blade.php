@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'ຂໍ້ມູນຜູ້ໃຊ້')
+@section('title', 'ຄົ້ນຫາຜູ້ໃຊ້')
 
 @section('content')
 <div class="container pt-3">
