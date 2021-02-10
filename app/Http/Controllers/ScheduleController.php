@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Major;
 use App\Models\Schedule;
-use App\Models\ScheduleTime;
-use App\Models\Subject;
 use Illuminate\Http\Request;
-use Illuminate\Support\Enumerable;
 use Illuminate\Support\Facades\Auth;
 
 class ScheduleController extends Controller{
@@ -30,7 +28,7 @@ class ScheduleController extends Controller{
 
         //setup times to show on schedule
         $times = $this->getTimesIn($thisweek, $user->major);
-        $schedules = $this->getWeekScheduleForUser($user, $thisweek, $times);
+        $schedules = $this->getWeekScheduleForMajor($user->major, $thisweek, $times);
         // dd($times);
         return view('shows.ShowWeekSchedule', compact('major', 'schedules', 'times', 'days', 'laoDays', 'thisweek', 'lastsunday', 'nextsunday'));
     }
@@ -54,6 +52,44 @@ class ScheduleController extends Controller{
             return false;
         }
     }
+    public function manageSchedulesSelectMajor(Request $request){
+        return view('admin.manageschedules-selectmajor', ['token' => $request->session()->token()]);
+    }
+    public function manageSchedules($major_id){
+        if(Auth::user()->role == 'admin'){
+            $major = Major::find($major_id);
+            //setup date for a week to show on schedule
+            $days = self::DAYS;
+            $laoDays = self::LAODAYS;$thisweek = $this->thisweek(date('Y-m-d'));
+            
+            $from = $thisweek['Sun'];
+            $lastsunday = date('Y-m-d', strtotime($thisweek['Sun'].' last Sunday'));
+            $nextsunday = date('Y-m-d', strtotime($thisweek['Sun'].' next Sunday'));
+
+            //setup times to show on schedule
+            $times = $this->getTimesIn($thisweek, $major);
+            $schedules = $this->getWeekScheduleForMajor($major, $thisweek, $times);
+            return view('admin.manageschedules', compact('major', 'schedules', 'times', 'days', 'laoDays', 'thisweek', 'lastsunday', 'nextsunday'));
+        }else return abort(403);
+    }
+    public function manageSchedulesDate($major_id, $date){
+        if(Auth::user()->role == 'admin'){
+            $major = Major::find($major_id);
+            //setup date for a week to show on schedule
+            $days = self::DAYS;
+            $laoDays = self::LAODAYS;
+            $thisweek = $this->thisweek($date);
+            
+            $from = $thisweek['Sun'];
+            $lastsunday = date('Y-m-d', strtotime($thisweek['Sun'].' last Sunday'));
+            $nextsunday = date('Y-m-d', strtotime($thisweek['Sun'].' next Sunday'));
+
+            //setup times to show on schedule
+            $times = $this->getTimesIn($thisweek, $major);
+            $schedules = $this->getWeekScheduleForMajor($major, $thisweek, $times);
+            return view('admin.manageschedules', compact('major', 'schedules', 'times', 'days', 'laoDays', 'thisweek', 'lastsunday', 'nextsunday'));
+        }else return abort(403);
+    }
     /**
      * get schedules in a week for the major given user's in
      * @param App\Models\User $user
@@ -61,14 +97,14 @@ class ScheduleController extends Controller{
      * @param array $times 2 dimensional array [['starttime' => time, 'endtime' => time]]
      * @return array $schedules 3 dimensional associative array with keys [day][starttime][endtime]
      */
-    private function getWeekScheduleForUser($user, $week, $times){
+    private function getWeekScheduleForMajor($major, $week, $times){
         $days = self::DAYS;
         $schedules = [];
         foreach ($week as $day => $date) {
             foreach ($times as $time) {
                 $starttime = $time['starttime'];
                 $endtime = $time['endtime'];
-                if($schedule = $user->major->schedules->toQuery()
+                if($schedule = $major->schedules->toQuery()
                             ->where('date', $date)
                             ->where('starttime', $starttime)
                             ->where('endtime', $endtime)->first())
@@ -83,12 +119,12 @@ class ScheduleController extends Controller{
      * @param App\Models\Major $major
      * @return array [['starttime' => time, 'endtime' => time]]
      */
-    private function getTimesIn($week, $major = null){
+    private function getTimesIn($week, Major $major = null){
         $times = [];
         $starttimes = [];
         $endtimes = [];
         foreach($week as $date){
-            if($major == null) $schedules = Schedule::where('date', $date)->orderBy('starttime')->get();
+            if(!$major) $schedules = Schedule::where('date', $date)->orderBy('starttime')->get();
             else {
                 $schedules = $major->schedules;
                 if($schedules->count() > 0) $schedules = $schedules->toQuery()->where('date', $date)->orderBy('starttime')->get();

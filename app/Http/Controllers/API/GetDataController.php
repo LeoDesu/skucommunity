@@ -10,7 +10,6 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class GetDataController extends Controller
 {
@@ -38,7 +37,19 @@ class GetDataController extends Controller
         return User::find($id);
     }
     public function searchusers($search){
-        return User::where('name', 'like', $search == ''? '':"%$search%")->orderBy('name')->get();
+        return User::where('name', 'like', $search == ''? '':"%$search%")->orderBy('name')->get()->each(function($i){
+            $i->major = Major::find($i->major_id);
+        });
+    }
+    public function searchteachers($search){
+        return User::where('role', 'teacher')->where('name', 'like', $search == ''? '':"%$search%")->orderBy('name')->get()->each(function($i){
+            $i->major = Major::find($i->major_id);
+        });
+    }
+    public function searchstudents($search){
+        return User::where('role', 'student')->where('name', 'like', $search == ''? '':"%$search%")->orderBy('name')->get()->each(function($i){
+            $i->major = Major::find($i->major_id);
+        });
     }
     public function searchsubjects($search){
         return Subject::where('name', 'like', $search == ''? '':"%$search%")->orderBy('name')->get();

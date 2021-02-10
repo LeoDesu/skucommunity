@@ -33,3 +33,6 @@
 .btn-c-padding{
     padding: .3em .75em;
 }
+.pointer{
+    cursor: pointer;
+}

@@ -7,13 +7,13 @@
         <div class="card">
             <div class="card-header d-flex">
                 <div class="col-4 d-flex flex-direction-reverse">
-                    <a class="btn btn-success btn-c-padding" href="/showschedule/{{ $lastsunday }}">ທິດກ່ອນໜ້າ</a>
+                    <a class="btn btn-success btn-c-padding" href="/manageschedules/{{ $major->id }}/{{ $lastsunday }}">ທິດກ່ອນໜ້າ</a>
                 </div>
                 <div class="col-4 text-center">
-                    <h4>ຕາຕະລາງປະຈໍາອາທິດຂອງສາຂາ {{ $major }}</h4>
+                    <h4>ແກ້ໄຂຕາຕະລາງປະຈໍາອາທິດຂອງສາຂາ {{ $major->name }}</h4>
                 </div>
                 <div class="col-4">
-                    <a class="btn btn-success btn-c-padding" href="/showschedule/{{ $nextsunday }}">ທິດຕໍ່ໄປ</a>
+                    <a class="btn btn-success btn-c-padding" href="/manageschedules/{{ $major->id }}/{{ $nextsunday }}">ທິດຕໍ່ໄປ</a>
                 </div>
             </div>
 

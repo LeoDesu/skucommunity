@@ -28,6 +28,8 @@ Vue.component('insert-subject-button', require('./components/admin/InsertSubject
 Vue.component('search-user-box', require('./components/SearchUserBox.vue').default);
 Vue.component('select-user-by-search', require('./components/admin/SelectUserBySearch.vue').default);
 Vue.component('select-subject-by-search', require('./components/admin/SelectSubjectBySearch.vue').default);
+Vue.component('manageschedules-selectmajor', require('./components/admin/ManageSchedulesSelectMajor.vue').default);
+Vue.component('userlist-search', require('./components/admin/UserListSearch.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

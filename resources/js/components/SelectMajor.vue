@@ -9,7 +9,7 @@
         </div>
         <div class="row w-100 form-group" v-if="selectedFaculty != undefined">
             <label for="major_id" class="col-md-4 col-form-label text-md-right">ສາຂາ:</label>
-            <select :name="multiple ? 'major_id[]':'major_id'" id="major_id" class="form-control col-md-6" v-model="selectedMajors" :required="required" :multiple="multiple" autofocus>
+            <select :name="multiple ? 'major_id[]':'major_id'" id="major_id" v-model="selectedMajors" @change="$emit('change',selectedMajors)" class="form-control col-md-6" :required="required" :multiple="multiple" autofocus>
                 <option v-for="major in majors" :key="major" :value="major.id">{{ major.name }}</option>
             </select>
         </div>

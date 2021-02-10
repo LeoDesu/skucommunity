@@ -22,8 +22,13 @@ class AdminController extends Controller
 
     public function userInfo(Request $request){
         if(Auth::user()->role == 'admin'){
-            
-            return view('admin.dashboard', compact('token'));
+            $token = $request->session()->token();
+            return view('admin.userinfo', compact('token'));
+        }else return abort(403);
+    }
+    public function showUserInfo(User $user){
+        if(Auth::user()->role == 'admin'){
+            return view('admin.showuserinfo', compact('user'));
         }else return abort(403);
     }
 

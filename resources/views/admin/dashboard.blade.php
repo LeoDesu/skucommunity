@@ -21,6 +21,7 @@
                                 <div class="card-body">
                                     <div class="row mb-2"><a href="/adduser" class="btn btn-info text-1em w-100">ເພີ່ມຜູ້ໃຊ້</a></div>
                                     <div class="row mb-2"><a href="/manageteaching" class="btn btn-info text-1em w-100">ຈັດການການສອນ</a></div>
+                                    <div class="row mb-2"><a href="/userinfo" class="btn btn-info text-1em w-100">ຂໍ້ມູນຜູ້ໃຊ້</a></div>
                                 </div>
                             </div>
                         </div>
