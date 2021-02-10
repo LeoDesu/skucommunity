@@ -45,8 +45,10 @@ Route::get('/latest', [BlogController::class, 'latest'])->name('latest');
 Route::get('/announcements', [BlogController::class, 'announcements'])->name('announcements');
 Route::get('/myclass', [BlogController::class, 'myclass']);
 Route::get('/blog/{blog}', [BlogController::class, 'viewBlog']);
-Route::post('/upvote/{blog}', [BlogController::class, 'upvote']);
-Route::post('/downvote/{blog}', [BlogController::class, 'downvote']);
+Route::get('/getupvotes/{blog}', [BlogController::class, 'getUpvotes']);
+Route::post('/upvote', [BlogController::class, 'upvote']);
+Route::get('/getdownvotes/{blog}', [BlogController::class, 'getDownvotes']);
+Route::post('/downvote', [BlogController::class, 'downvote']);
 Route::post('/comment/{blog}', [BlogController::class, 'comment']);
 
 //shows

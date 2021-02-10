@@ -34,7 +34,7 @@
                         <video class="w-100 mt-2" src="/storage/{{ $blog->attachment }}" controls></video>
                     @elseif($audio)
                         <audio class="w-100 mt-2" src="/storage/{{ $blog->attachment }}" controls></audio>
-                    @else
+                    @elseif($blog->attachment != '')
                         <a href="/storage/{{ $blog->attachment }}">{{ pathinfo($blog->attachment, PATHINFO_FILENAME) }}.{{ pathinfo($blog->attachment, PATHINFO_EXTENSION) }}</a>
                     @endif
                 </div>
@@ -42,8 +42,7 @@
             <div class="card-footer">
                 <div class="row d-flex align-items-center">
                     @auth
-                        <form action="/upvote/{{ $blog->id }}" method="post">@csrf<button class="btn btn-success mr-1 btn-c-padding" type="submit">ໃຫ້ຄະແນນ: </button></form>{{ $upvotes }}
-                        <form action="/downvote/{{ $blog->id }}" method="post">@csrf<button class="btn btn-danger ml-1 mr-1 btn-c-padding" type="submit">ລົບຄະແນນ: </button></form>{{ $downvotes }}
+                        <vote-button blog-id="{{ $blog->id }}"/>
                     @else
                         <div class="btn-c-padding">ຄົນໃຫ້ຄະແນນ:</div>{{ $upvotes }}<div class="btn-c-padding">ຄົນລົບຄະແນນ:</div>{{ $downvotes }}
                     @endauth
@@ -69,26 +68,28 @@
                 @endauth
             </div>
         </div>
-        <div class="card">
-            <div class="card-body">
-                @foreach($blog->comments as $comment)
-                    <div class="row mt-3 mb-3 d-flex">
-                        <div class="mr-1" style="width: 3em;">
-                            <img src="/storage/{{ $comment->user->profile->image }}" style="width: 100%;">
-                        </div>
-                        <div class="col-md-11 col-sm-10">
-                            <div class="row d-flex justify-content-between">
-                                <div>{{ $comment->user->name }}</div>
-                                <div>{{ $comment->created_at->format('ເມື່ອ h:i d/m/Y') }}</div>
+        @if($blog->comments->count() > 0)
+            <div class="card">
+                <div class="card-body">
+                    @foreach($blog->comments as $comment)
+                        <div class="row mt-3 mb-3 d-flex">
+                            <div class="mr-1" style="width: 3em;">
+                                <img src="/storage/{{ $comment->user->profile->image }}" style="width: 100%;">
                             </div>
-                            <div class="row">
-                                {{ $comment->comment }}
+                            <div class="col-md-11 col-sm-10">
+                                <div class="row d-flex justify-content-between">
+                                    <div>{{ $comment->user->name }}</div>
+                                    <div>{{ $comment->created_at->format('ເມື່ອ h:i d/m/Y') }}</div>
+                                </div>
+                                <div class="row">
+                                    {{ $comment->comment }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endif
     </div>
 </div>
 @endsection
