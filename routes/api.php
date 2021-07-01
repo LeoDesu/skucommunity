@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\GetDataController;
+use App\Models\ScheduleTime;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,10 @@ use App\Http\Controllers\API\GetDataController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/scheduletime', function(){
+    return ScheduleTime::all();
+});
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

@@ -74,13 +74,10 @@ Route::get('/showuserinfo/{user}', [AdminController::class, 'showUserInfo']);
 
 
 Route::get('/insertdata', [InsertDataController::class, 'index']);
-Route::get('/insertsubject', [InsertDataController::class, 'insertSubjectPanel']);
 Route::post('/insertsubject', [InsertDataController::class, 'insertSubject']);
-Route::get('/insertmajor', [InsertDataController::class, 'insertMajorPanel']);
 Route::post('/insertmajor', [InsertDataController::class, 'insertMajor']);
-Route::get('/insertclassroom', [InsertDataController::class, 'insertClassroomPanel']);
 Route::post('/insertclassroom', [InsertDataController::class, 'insertClassroom']);
-Route::get('/insertschedule', [InsertDataController::class, 'insertSchedulePanel']);
+Route::get('/insertschedule', [InsertDataController::class, 'insertSchedulePage']);
 Route::post('/insertschedule', [InsertDataController::class, 'insertSchedule']);
 
 //API

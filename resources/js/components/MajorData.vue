@@ -20,7 +20,7 @@
         <div class="row w-100 form-group" v-if="selectedMajors != undefined">
             <label for="subject" class="col-md-4 col-form-label text-md-right">ວິຊາ:</label>
             <div class="col-md-6">
-                <select id="subject" name="subject_id" class="form-control" @change="requestTeachers" v-model="selectedSubject" required autofocus>
+                <select id="subject" name="subject_id" class="form-control" @change="requestTeachers()" v-model="selectedSubject" required autofocus>
                     <option v-for="subject in subjectOptions" :key="subject.id" :value="subject.id">{{ subject.name }}</option>
                 </select>
             </div>
@@ -28,7 +28,7 @@
         <div class="row w-100 form-group" v-if="selectedSubject != undefined">
             <label for="teacher" class="col-md-4 col-form-label text-md-right">ອາຈານ:</label>
             <div class="col-md-6">
-                <select id="teacher" name="user_id" class="form-control" v-model="selectedTeacher" required autofocus>
+                <select @change="$emit('change-teacher', selectedTeacher)" id="teacher" name="user_id" class="form-control" v-model="selectedTeacher" required autofocus>
                     <option v-for="teacher in teachers" :key="teacher.id" :value="teacher.id">{{ teacher.name }}</option>
                 </select>
             </div>
@@ -36,10 +36,7 @@
     </div>
 </template>
 <script>
-    import axios from "axios";
     export default {
-        components: {
-        },
         data(){
             return{
                 faculties: [],
@@ -80,6 +77,7 @@
                 })
             },
             requestSubjects: function(){
+                this.$emit('change-majors', this.selectedMajors)
                 this.majors.forEach((value, key) => {
                     axios.get('/getsubjects/'+value.id).then( response => {
                         this.subjects[key] = {id: value.id, subjects: response.data};
@@ -87,7 +85,7 @@
                 });
             },
             requestTeachers: function(){
-                console.log("sending: /getteachers/"+this.selectedSubject);
+                this.$emit('change-subject', this.selectedSubject)
                 axios.get('/getteachers/'+this.selectedSubject).then( response => {
                     this.teachers = response.data;
                 });

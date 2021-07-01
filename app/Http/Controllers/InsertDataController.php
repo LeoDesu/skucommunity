@@ -39,10 +39,6 @@ class InsertDataController extends Controller
         return redirect('/');
     }
 
-    public function insertSubjectPanel(){
-        if(Auth::user()->role != 'admin') return redirect('/');
-        return view('insertdata.subject');
-    }
     public function insertSubject(Request $request){
         if(Auth::user()->role != 'admin') return redirect('/');
         Subject::create([
@@ -51,10 +47,6 @@ class InsertDataController extends Controller
         return redirect('/dashboard');
     }
 
-    public function insertMajorPanel(){
-        if(Auth::user()->role != 'admin') return redirect('/');
-        return view('insertdata.major');
-    }
     public function insertMajor(Request $request){
         if(Auth::user()->role != 'admin') return redirect('/');
         Major::create([
@@ -63,11 +55,7 @@ class InsertDataController extends Controller
         ]);
         return redirect('/dashboard');
     }
-
-    public function insertClassroomPanel(){
-        if(Auth::user()->role != 'admin') return redirect('/');
-        return view('insertdata.classroom');
-    }
+    
     public function insertClassroom(Request $request){
         if(Auth::user()->role != 'admin') return redirect('/');
         Classroom::create([
@@ -77,11 +65,11 @@ class InsertDataController extends Controller
         return redirect('/dashboard');
     }
 
-    public function insertSchedulePanel(){
-        $role = Auth::user()->role;
-        if($role != 'admin' && $role != 'teacher') return redirect('/');
+    public function insertSchedulePage(Request $request){
+        if(Auth::user()->role != 'admin') return redirect('/');
         return view('insertdata.schedule');
     }
+
     public function insertSchedule(Request $request){
         $role = Auth::user()->role;
         if($role != 'admin' && $role != 'teacher') return redirect('/');

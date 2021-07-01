@@ -45,11 +45,6 @@ class AdminController extends Controller
             return redirect('/dashboard');
         }else return abort(403);
     }
-    public function manageSubjects(){
-        if(Auth::user()->role == 'admin'){
-            return view('admin.managesubjects');
-        }else return abort(403);
-    }
     public function manageSubjectsFor(Request $request){
         if(Auth::user()->role == 'admin'){
             $major = Major::find($request->major_id);

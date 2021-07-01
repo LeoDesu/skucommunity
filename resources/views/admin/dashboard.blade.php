@@ -12,9 +12,9 @@
                     </div>
                 </div>
                 <div class="card-body border-collapse">
-                    <div class="row">
+                    <div class="row row-eq-height">
                         <div class="col-md-6 mb-4">
-                            <div class="card">
+                            <div class="card h-100">
                                 <div class="card-header bg-light">
                                     <h5 class="text-center">ຈັດການຜູ້ໃຊ້</h5>
                                 </div>
@@ -26,37 +26,49 @@
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <div class="card">
+                            <div class="card h-100">
                                 <div class="card-header bg-light">
                                     <h5 class="text-center">ຈັດການຄະນະ ແລະ ສາຂາວິຊາຮຽນ</h5>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row mb-2"><a href="/insertmajor" class="btn btn-info text-1em w-100">ເພີ່ມຄະນະ ແລະ ສາຂາວິຊາຮຽນ</a></div>
-                                    <div class="row mb-2"><a href="/managesubjects" class="btn btn-info text-1em w-100">ຈັດການວິຊາຮຽນຂອງສາຂາ</a></div>
+                                    <div class="row mb-2">
+                                        <insert-major-button csrf="{{ $token }}" button-class="btn btn-info w-100 text-1em"/>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <manage-subject-button csrf="{{ $token }}" button-class="btn btn-info w-100 text-1em"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row row-eq-height">
                         <div class="col-md-6 mb-4">
-                            <div class="card">
+                            <div class="card h-100">
                                 <div class="card-header bg-light">
                                     <h5 class="text-center">ຈັດການລະບົບ</h5>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row mb-2"><insert-subject-button csrf="{{ $token }}"/></div>
-                                    <div class="row mb-2"><insert-classroom-button csrf="{{ $token }}"/></div>
+                                    <div class="row mb-2">
+                                        <insert-subject-button csrf="{{ $token }}" button-class="btn btn-info w-100 text-1em"/>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <insert-classroom-button csrf="{{ $token }}" button-class="btn btn-info w-100 text-1em"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <div class="card">
+                            <div class="card h-100">
                                 <div class="card-header bg-light">
                                     <h5 class="text-center">ຈັດການຕາຕະລາງ</h5>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row mb-2"><a href="/insertschedule" class="btn btn-info text-1em w-100">ເພິ່ມຊົ່ວໂມງຮຽນ</a></div>
-                                    <div class="row mb-2"><a href="/manageschedules" class="btn btn-info text-1em w-100">ແກ້ໄຂຕາຕະລາງ</a></div>
+                                    <div class="row mb-2">
+                                        <insert-schedule-button csrf="{{ $token }}" element-class="w-100" button-class="btn-info text-1em w-100" />
+                                    </div>
+                                    <div class="row mb-2">
+                                        <manage-schedules-select-major csrf="{{ $token }}" element-class="w-100" button-class="btn-info text-1em w-100" />
+                                    </div>
                                 </div>
                             </div>
                         </div>

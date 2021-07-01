@@ -10,7 +10,7 @@
                     ຄົ້ນຫາຜູ້ໃຊ້
                 </div>
                 <div class="card-body">
-                    <userlist-search csrf="{{ $token }}"/>
+                    <user-list-search csrf="{{ $token }}"/>
                 </div>
             </div>
         </div>

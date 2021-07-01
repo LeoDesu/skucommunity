@@ -3,7 +3,7 @@
         <div class="row w-100 form-group">
             <label for="building" class="col-md-4 col-form-label text-md-right">ຕຶກຮຽນ:</label>
             <div class="col-md-6">
-                <select id="building" class="form-control" v-model="selectedBuilding" @change="requestClassrooms(selectedBuilding)" required autofocus>
+                <select id="building" class="form-control" v-model="selectedBuilding" @change="requestClassrooms()" required autofocus>
                     <option v-for="building in building" :key="building">{{ building.building }}</option>
                 </select>
             </div>
@@ -11,7 +11,7 @@
         <div class="row w-100 form-group"  v-if="showOptions">
             <label for="classroom_id" class="col-md-4 col-form-label text-md-right">ຫ້ອງຮຽນ:</label>
             <div class="col-md-6">
-                <select name="classroom_id" id="classroom_id" class="form-control" v-model="selectedClassroom" required autofocus>
+                <select name="classroom_id" id="classroom_id" class="form-control" @change="$emit('change-classroom', selectedClassroom)" v-model="selectedClassroom" required autofocus>
                     <option v-for="classroom in classrooms" :key="classroom" :value="classroom.id">{{ classroom.name }}</option>
                 </select>
             </div>
@@ -31,8 +31,9 @@
             }
         },
         methods:{
-            requestClassrooms(building){
-                axios.get('/getclassrooms/'+building).then( response => {
+            requestClassrooms(){
+                this.$emit('change-building', this.selectedBuilding)
+                axios.get('/getclassrooms/'+this.selectedBuilding).then( response => {
                     this.classrooms = response.data;
                     this.showOptions = true;
                 })

@@ -5,7 +5,7 @@
         </div>
         <div class="row form-group">
             <label for="subject_id" class="col-md-4 text-right col-form-label">ວິຊາ:</label>
-            <select name="subject_id" id="subject_id" class="form-control col-md-6">
+            <select name="subject_id" id="subject_id" class="form-control col-md-6" v-model="selectedSubjects" @change="$emit('change', selectedSubjects)">
                 <option v-for="subject in subjects" :key="subject.id" :value="subject.id">
                     {{ subject.id }} {{ subject.name }}
                 </option>
@@ -20,7 +20,8 @@ export default {
     data(){
         return {
             search: '',
-            subjects: []
+            subjects: [],
+            selectedSubjects: []
         }
     },
     methods:{

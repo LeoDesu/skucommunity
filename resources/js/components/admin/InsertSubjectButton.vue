@@ -1,31 +1,54 @@
 <template>
-    <button class="btn btn-info w-100 text-1em" @click="show">
-        ເພີ່ມວິຊາຮຽນ
-    </button>
+    <div class="w-100" :class="elementClass">
+        <button :class="buttonClass" data-toggle="modal" data-target="#insert-subject-modal">
+            ເພີ່ມວິຊາຮຽນ
+        </button>
+        <div class="modal fade" id="insert-subject-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">ເພີ່ມວິຊາຮຽນ</h5>
+                        <button class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <input v-model="subject" class="form-control" name="name" placeholder="ວິຊາ" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-info rounded" @click="insert()">
+                            ເພີ່ມ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 <script>
 import swal from 'sweetalert';
-import Swal from 'sweetalert2';
 import axios from 'axios';
 export default {
-    props:['csrf'],
+    props: [
+        'scrf',
+        'elementClass',
+        'buttonClass'
+    ],
+    data(){
+        return {
+            subject : ''
+        }
+    },
     methods:{
-        show: function(){
-            Swal.fire({
-                title: 'ເພີ່ມວິຊາຮຽນ',
-                html: '<div class="form-group row"><input id="name" class="form-control" name="name" placeholder="ວິຊາ" autocomplete="off" required></div>',
-                preConfirm: () => {
-                    return axios.post("/insertsubject", {_token: this.csrf, name: document.getElementById("name").value})
-                        .then(() => {
-                            swal({icon: "success", text: "ສໍາເລັດ", buttons: false, timer: 1300})
-                        }).catch(() => {
-                            swal({icon: "error", text: "ຂໍອະໄພ ມີຂໍ້ຜິດພາດເກີດຂຶ້ນ"})
-                        })
-                }
-            });
-        },
         insert: function(){
-
+            axios.post("/insertsubject", {_token: this.csrf, name: this.subject})
+                .then(() => {
+                    swal({icon: "success", text: "ສໍາເລັດ", buttons: false, timer: 1300})
+                }).catch(() => {
+                    swal({icon: "error", text: "ຂໍອະໄພ ມີຂໍ້ຜິດພາດເກີດຂຶ້ນ", buttons: false, timer: 1300})
+                })
         }
     }
 }
