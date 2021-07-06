@@ -1,4 +1,9 @@
-
-files/server/*
-files/uploads/*
+*
+!files/
+!files/server/
+!files/uploads/
+!img/
+!img/clients/
+!img/server/
+!img/server/*
 !.gitignore
