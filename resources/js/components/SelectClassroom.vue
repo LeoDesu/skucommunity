@@ -4,7 +4,7 @@
             <label for="building" class="col-md-4 col-form-label text-md-right">ຕຶກຮຽນ:</label>
             <div class="col-md-6">
                 <select id="building" class="form-control" v-model="selectedBuilding" @change="requestClassrooms()" required autofocus>
-                    <option v-for="building in building" :key="building">{{ building.building }}</option>
+                    <option v-for="(building, index) in buildings" :key="index">{{ building.building }}</option>
                 </select>
             </div>
         </div>
@@ -12,7 +12,7 @@
             <label for="classroom_id" class="col-md-4 col-form-label text-md-right">ຫ້ອງຮຽນ:</label>
             <div class="col-md-6">
                 <select name="classroom_id" id="classroom_id" class="form-control" @change="$emit('change-classroom', selectedClassroom)" v-model="selectedClassroom" required autofocus>
-                    <option v-for="classroom in classrooms" :key="classroom" :value="classroom.id">{{ classroom.name }}</option>
+                    <option v-for="(classroom, index) in classrooms" :key="index" :value="classroom.id">{{ classroom.name }}</option>
                 </select>
             </div>
         </div>
@@ -21,9 +21,13 @@
 <script>
     import axios from "axios";
     export default {
+        props: [
+            'building',
+            'classroom'
+        ],
         data(){
             return{
-                building: [],
+                buildings: [],
                 selectedBuilding: undefined,
                 classrooms: [],
                 selectedClassroom: undefined,
@@ -41,7 +45,14 @@
         },
         mounted() {
             axios.get('/getbuildings').then( response => {
-                this.building = response.data;
+                this.buildings = response.data;
+                if(this.building){
+                    this.selectedBuilding = this.building
+                    this.requestClassrooms()
+                    if(this.classroom){
+                        this.selectedClassroom = this.classroom
+                    }
+                }
             })
         }
     }

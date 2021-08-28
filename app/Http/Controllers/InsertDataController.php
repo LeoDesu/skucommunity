@@ -19,23 +19,6 @@ class InsertDataController extends Controller
         $this->middleware('auth');
     }
     public function index(){
-        // $roles = [
-        //     ['admin', 'all', 'all', 1],
-        //     ['student', 'wrote', 'none', 0],
-        //     ['teacher', 'wrote', 'empty', 0],
-        // ];
-        // foreach($roles as $i){
-        //     Role::create(['role' => $i[0], 'manage_blogs' => $i[1], 'manage_schedules' => $i[2], 'manage_user_data' => $i[3]]);
-        // }
-
-        // $majors = [
-        //     ['BIT', 'ເຕັກໂນໂລຊີຂໍ້ມູນຂ່າວສານ'],
-        //     ['BNT', 'ເຕັກໂນໂລຊີຂໍ້ມູນຂ່າວສານ'],
-        //     ['BMT', 'ເຕັກໂນໂລຊີຂໍ້ມູນຂ່າວສານ'],
-        // ];
-        // foreach ($majors as $i) {
-        //     Major::create(['name' => $i[0], 'faculty' => $i[1]]);
-        // }
         return redirect('/');
     }
 
@@ -73,11 +56,11 @@ class InsertDataController extends Controller
     public function insertSchedule(Request $request){
         $role = Auth::user()->role;
         if($role != 'admin' && $role != 'teacher') return redirect('/');
-        if(count(ScheduleTime::where('from', $request->starttime)->get()))
-            $endtime = ScheduleTime::where('from', $request->starttime)->get()[0]->to;
+        if(($sch = ScheduleTime::where('from', $request->starttime)->get())->count())
+            $endtime = $sch->first()?->to;
         else
             $endtime = '00:00:00';
-        Schedule::create([
+        $schedule = Schedule::create([
             'date' => $request->date,
             'starttime' => $request->starttime,
             'endtime' => $endtime,
@@ -85,7 +68,6 @@ class InsertDataController extends Controller
             'user_id' => $request->user_id,
             'subject_id' => $request->subject_id
         ]);
-        $schedule = Schedule::where('date', $request->date)->where('starttime', $request->starttime)->where('user_id', $request->user_id)->first();
         foreach ($request->major_id as $id) {
             if(!$schedule->majors->contains($id))
                 $schedule->majors()->attach($id);

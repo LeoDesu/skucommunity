@@ -3,15 +3,19 @@
 
         <div class="row w-100 form-group">
             <label for="faculty" class="col-md-4 col-form-label text-md-right">ຄະນະ:</label>
-            <select id="faculty" class="form-control col-md-6" v-model="selectedFaculty" @change="requestMajors(selectedFaculty)" :required="required" autofocus>
-                <option v-for="faculty in faculties" :key="faculty">{{ faculty.faculty }}</option>
-            </select>
+            <div class="col-md-6">
+                <select id="faculty" class="form-control" v-model="selectedFaculty" @change="requestMajors(selectedFaculty)" :required="required" autofocus>
+                    <option v-for="(faculty, index) in faculties" :key="index">{{ faculty.faculty }}</option>
+                </select>
+            </div>
         </div>
         <div class="row w-100 form-group" v-if="selectedFaculty != undefined">
             <label for="major_id" class="col-md-4 col-form-label text-md-right">ສາຂາ:</label>
-            <select :name="multiple ? 'major_id[]':'major_id'" id="major_id" v-model="selectedMajors" @change="$emit('change',selectedMajors)" class="form-control col-md-6" :required="required" :multiple="multiple" autofocus>
-                <option v-for="major in majors" :key="major" :value="major.id">{{ major.name }}</option>
-            </select>
+            <div class="col-md-6">
+                <select :name="multiple ? 'major_id[]':'major_id'" id="major_id" v-model="selectedMajors" @change="$emit('change',selectedMajors)" class="form-control" :required="required" :multiple="multiple" autofocus>
+                    <option v-for="(major, index) in majors" :key="index" :value="major.id">{{ major.name }}</option>
+                </select>
+            </div>
         </div>
         <div v-if="error != undefined" class="row w-100">
             <span class="invalid-feedback offset-4" role="alert">

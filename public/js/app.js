@@ -2015,6 +2015,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['faculty'],
   data: function data() {
     return {
       faculties: [],
@@ -2091,6 +2092,12 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('/getfaculties').then(function (response) {
       _this5.faculties = response.data;
+
+      if (_this5.faculty) {
+        _this5.selectedFaculty = _this5.faculty;
+
+        _this5.requestMajors(_this5.selectedFaculty);
+      }
     });
   }
 });
@@ -2190,9 +2197,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['building', 'classroom'],
   data: function data() {
     return {
-      building: [],
+      buildings: [],
       selectedBuilding: undefined,
       classrooms: [],
       selectedClassroom: undefined,
@@ -2214,7 +2222,17 @@ __webpack_require__.r(__webpack_exports__);
     var _this2 = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/getbuildings').then(function (response) {
-      _this2.building = response.data;
+      _this2.buildings = response.data;
+
+      if (_this2.building) {
+        _this2.selectedBuilding = _this2.building;
+
+        _this2.requestClassrooms();
+
+        if (_this2.classroom) {
+          _this2.selectedClassroom = _this2.classroom;
+        }
+      }
     });
   }
 });
@@ -2232,6 +2250,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
 //
 //
 //
@@ -2434,6 +2456,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
 //
 //
 //
@@ -2757,6 +2781,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2964,11 +2989,11 @@ __webpack_require__.r(__webpack_exports__);
     return {
       search: '',
       subjects: [],
-      selectedSubjects: []
+      selectedSubject: ''
     };
   },
   methods: {
-    searchUsers: function searchUsers() {
+    searchSubject: function searchSubject() {
       var _this = this;
 
       if (this.search != '') axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/searchsubjects/' + this.search).then(function (res) {
@@ -42437,7 +42462,7 @@ var render = function() {
             }
           },
           _vm._l(_vm.faculties, function(faculty) {
-            return _c("option", { key: faculty }, [
+            return _c("option", { key: faculty.faculty }, [
               _vm._v(_vm._s(faculty.faculty))
             ])
           }),
@@ -42499,10 +42524,10 @@ var render = function() {
                   }
                 }
               },
-              _vm._l(_vm.majors, function(major) {
+              _vm._l(_vm.majors, function(major, index) {
                 return _c(
                   "option",
-                  { key: major, domProps: { value: major.id } },
+                  { key: index, domProps: { value: major.id } },
                   [_vm._v(_vm._s(major.name))]
                 )
               }),
@@ -42563,10 +42588,10 @@ var render = function() {
                   ]
                 }
               },
-              _vm._l(_vm.subjectOptions, function(subject) {
+              _vm._l(_vm.subjectOptions, function(subject, index) {
                 return _c(
                   "option",
-                  { key: subject.id, domProps: { value: subject.id } },
+                  { key: index, domProps: { value: subject.id } },
                   [_vm._v(_vm._s(subject.name))]
                 )
               }),
@@ -42627,10 +42652,10 @@ var render = function() {
                   ]
                 }
               },
-              _vm._l(_vm.teachers, function(teacher) {
+              _vm._l(_vm.teachers, function(teacher, index) {
                 return _c(
                   "option",
-                  { key: teacher.id, domProps: { value: teacher.id } },
+                  { key: index, domProps: { value: teacher.id } },
                   [_vm._v(_vm._s(teacher.name))]
                 )
               }),
@@ -42802,8 +42827,8 @@ var render = function() {
               ]
             }
           },
-          _vm._l(_vm.building, function(building) {
-            return _c("option", { key: building }, [
+          _vm._l(_vm.buildings, function(building, index) {
+            return _c("option", { key: index }, [
               _vm._v(_vm._s(building.building))
             ])
           }),
@@ -42866,10 +42891,10 @@ var render = function() {
                   ]
                 }
               },
-              _vm._l(_vm.classrooms, function(classroom) {
+              _vm._l(_vm.classrooms, function(classroom, index) {
                 return _c(
                   "option",
-                  { key: classroom, domProps: { value: classroom.id } },
+                  { key: index, domProps: { value: classroom.id } },
                   [_vm._v(_vm._s(classroom.name))]
                 )
               }),
@@ -42913,47 +42938,49 @@ var render = function() {
         [_vm._v("ຄະນະ:")]
       ),
       _vm._v(" "),
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.selectedFaculty,
-              expression: "selectedFaculty"
-            }
-          ],
-          staticClass: "form-control col-md-6",
-          attrs: { id: "faculty", required: _vm.required, autofocus: "" },
-          on: {
-            change: [
-              function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.selectedFaculty = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
-              function($event) {
-                return _vm.requestMajors(_vm.selectedFaculty)
+      _c("div", { staticClass: "col-md-6" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.selectedFaculty,
+                expression: "selectedFaculty"
               }
-            ]
-          }
-        },
-        _vm._l(_vm.faculties, function(faculty) {
-          return _c("option", { key: faculty }, [
-            _vm._v(_vm._s(faculty.faculty))
-          ])
-        }),
-        0
-      )
+            ],
+            staticClass: "form-control",
+            attrs: { id: "faculty", required: _vm.required, autofocus: "" },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.selectedFaculty = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                function($event) {
+                  return _vm.requestMajors(_vm.selectedFaculty)
+                }
+              ]
+            }
+          },
+          _vm._l(_vm.faculties, function(faculty, index) {
+            return _c("option", { key: index }, [
+              _vm._v(_vm._s(faculty.faculty))
+            ])
+          }),
+          0
+        )
+      ])
     ]),
     _vm._v(" "),
     _vm.selectedFaculty != undefined
@@ -42967,55 +42994,57 @@ var render = function() {
             [_vm._v("ສາຂາ:")]
           ),
           _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.selectedMajors,
-                  expression: "selectedMajors"
-                }
-              ],
-              staticClass: "form-control col-md-6",
-              attrs: {
-                name: _vm.multiple ? "major_id[]" : "major_id",
-                id: "major_id",
-                required: _vm.required,
-                multiple: _vm.multiple,
-                autofocus: ""
-              },
-              on: {
-                change: [
-                  function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.selectedMajors = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  },
-                  function($event) {
-                    return _vm.$emit("change", _vm.selectedMajors)
+          _c("div", { staticClass: "col-md-6" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selectedMajors,
+                    expression: "selectedMajors"
                   }
-                ]
-              }
-            },
-            _vm._l(_vm.majors, function(major) {
-              return _c(
-                "option",
-                { key: major, domProps: { value: major.id } },
-                [_vm._v(_vm._s(major.name))]
-              )
-            }),
-            0
-          )
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: _vm.multiple ? "major_id[]" : "major_id",
+                  id: "major_id",
+                  required: _vm.required,
+                  multiple: _vm.multiple,
+                  autofocus: ""
+                },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.selectedMajors = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.$emit("change", _vm.selectedMajors)
+                    }
+                  ]
+                }
+              },
+              _vm._l(_vm.majors, function(major, index) {
+                return _c(
+                  "option",
+                  { key: index, domProps: { value: major.id } },
+                  [_vm._v(_vm._s(major.name))]
+                )
+              }),
+              0
+            )
+          ])
         ])
       : _vm._e(),
     _vm._v(" "),
@@ -43199,12 +43228,21 @@ var render = function() {
       "div",
       { staticClass: "modal fade", attrs: { id: "insert-classroom-modal" } },
       [
-        _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-dialog modal-lg" }, [
           _c("div", { staticClass: "modal-content" }, [
             _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
               _c("div", { staticClass: "form-group row" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-4 text-right col-form-label",
+                    attrs: { for: "building" }
+                  },
+                  [_vm._v("ຕຶກຮຽນ")]
+                ),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -43214,12 +43252,8 @@ var render = function() {
                       expression: "building"
                     }
                   ],
-                  staticClass: "form-control",
-                  attrs: {
-                    name: "building",
-                    placeholder: "ຕຶກຮຽນ",
-                    required: ""
-                  },
+                  staticClass: "form-control col-md-6",
+                  attrs: { id: "building", name: "building", required: "" },
                   domProps: { value: _vm.building },
                   on: {
                     input: function($event) {
@@ -43233,6 +43267,15 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group row" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-4 text-right col-form-label",
+                    attrs: { for: "name" }
+                  },
+                  [_vm._v("ຫ້ອງຮຽນ")]
+                ),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -43242,10 +43285,10 @@ var render = function() {
                       expression: "classroom"
                     }
                   ],
-                  staticClass: "form-control",
+                  staticClass: "form-control col-md-6",
                   attrs: {
+                    id: "name",
                     name: "name",
-                    placeholder: "ຫ້ອງຮຽນ",
                     autocomplete: "off",
                     required: ""
                   },
@@ -43341,7 +43384,7 @@ var render = function() {
       "div",
       { staticClass: "modal fade", attrs: { id: "insert-major-modal" } },
       [
-        _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-dialog modal-lg" }, [
           _c("div", { staticClass: "modal-content" }, [
             _vm._m(0),
             _vm._v(" "),
@@ -43517,7 +43560,7 @@ var render = function() {
       "div",
       { staticClass: "modal fade", attrs: { id: "insert-schedule-modal" } },
       [
-        _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-dialog modal-lg" }, [
           _c("div", { staticClass: "modal-content" }, [
             _vm._m(0),
             _vm._v(" "),
@@ -43743,12 +43786,21 @@ var render = function() {
       "div",
       { staticClass: "modal fade", attrs: { id: "insert-subject-modal" } },
       [
-        _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-dialog modal-lg" }, [
           _c("div", { staticClass: "modal-content" }, [
             _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
               _c("div", { staticClass: "form-group row" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-4 text-right col-form-label",
+                    attrs: { for: "name" }
+                  },
+                  [_vm._v("ວິຊາ")]
+                ),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -43758,7 +43810,7 @@ var render = function() {
                       expression: "subject"
                     }
                   ],
-                  staticClass: "form-control",
+                  staticClass: "form-control col-md-6",
                   attrs: {
                     name: "name",
                     placeholder: "ວິຊາ",
@@ -43857,7 +43909,7 @@ var render = function() {
       "div",
       { staticClass: "modal fade", attrs: { id: "select-major-modal" } },
       [
-        _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-dialog modal-lg" }, [
           _c("div", { staticClass: "modal-content" }, [
             _vm._m(0),
             _vm._v(" "),
@@ -43960,7 +44012,7 @@ var render = function() {
       "div",
       { staticClass: "modal fade", attrs: { id: "manage-subject-modal" } },
       [
-        _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-dialog modal-lg" }, [
           _c("div", { staticClass: "modal-content" }, [
             _vm._m(0),
             _vm._v(" "),
@@ -44116,7 +44168,7 @@ var render = function() {
         attrs: { type: "text", placeholder: "ຄົ້ນຫາວິຊາ" },
         domProps: { value: _vm.search },
         on: {
-          keyup: _vm.searchUsers,
+          keyup: _vm.searchSubject,
           input: function($event) {
             if ($event.target.composing) {
               return
@@ -44144,8 +44196,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.selectedSubjects,
-              expression: "selectedSubjects"
+              value: _vm.selectedSubject,
+              expression: "selectedSubject"
             }
           ],
           staticClass: "form-control col-md-6",
@@ -44161,12 +44213,12 @@ var render = function() {
                     var val = "_value" in o ? o._value : o.value
                     return val
                   })
-                _vm.selectedSubjects = $event.target.multiple
+                _vm.selectedSubject = $event.target.multiple
                   ? $$selectedVal
                   : $$selectedVal[0]
               },
               function($event) {
-                return _vm.$emit("change", _vm.selectedSubjects)
+                return _vm.$emit("change", _vm.selectedSubject)
               }
             ]
           }
@@ -56737,6 +56789,10 @@ files.keys().map(function (key) {
 var app = new Vue({
   el: '#app'
 });
+
+window.updateSchedule = function (id) {
+  window.open('/schedule/' + id + '/edit', '_self');
+};
 
 /***/ }),
 

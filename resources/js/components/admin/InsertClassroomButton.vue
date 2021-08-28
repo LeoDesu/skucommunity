@@ -4,7 +4,7 @@
             ເພີ່ມຫ້ອງຮຽນ
         </button>
         <div class="modal fade" id="insert-classroom-modal">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">ເພີ່ມຫ້ອງຮຽນ</h5>
@@ -14,10 +14,12 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group row">
-                            <input v-model="building" class="form-control" name="building" placeholder="ຕຶກຮຽນ" required>
+                            <label for="building" class="col-md-4 text-right col-form-label">ຕຶກຮຽນ</label>
+                            <input v-model="building" class="form-control col-md-6" id="building" name="building" required>
                         </div>
                         <div class="form-group row">
-                            <input v-model="classroom" class="form-control" name="name" placeholder="ຫ້ອງຮຽນ" autocomplete="off" required>
+                            <label for="name" class="col-md-4 text-right col-form-label">ຫ້ອງຮຽນ</label>
+                            <input v-model="classroom" class="form-control col-md-6" id="name" name="name" autocomplete="off" required>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -15,6 +15,7 @@ class ScheduleController extends Controller{
     }
     public function index($date = null){
         $user = Auth::user();
+        $update = $user->role === 'admin';
         $major = $user->major->name;
         //setup date for a week to show on schedule
         $days = self::DAYS;
@@ -29,8 +30,7 @@ class ScheduleController extends Controller{
         //setup times to show on schedule
         $times = $this->getTimesIn($thisweek, $user->major);
         $schedules = $this->getWeekScheduleForMajor($user->major, $thisweek, $times);
-        // dd($times);
-        return view('shows.ShowWeekSchedule', compact('major', 'schedules', 'times', 'days', 'laoDays', 'thisweek', 'lastsunday', 'nextsunday'));
+        return view('shows.ShowWeekSchedule', compact('major', 'schedules', 'times', 'days', 'laoDays', 'thisweek', 'lastsunday', 'nextsunday', 'update'));
     }
     public function showToday($date = '2021-01-05'){
         $times = $this->getTimesIn($date);
@@ -39,9 +39,9 @@ class ScheduleController extends Controller{
     public function showTeach(){
         $today = date('Y-m-d');
         $timenow = date('H:i:s');
-        if($schedules = Auth::user()->teachSchedules->toQuery()
-                ->where('date', '>=', $today)
-                ->orderBy('date')->orderBy('starttime')->get())
+        if($schedules = ($sch = Auth::user()->teachSchedules)->count()
+                ? $sch->toQuery()->where('date', '>=', $today)->orderBy('date')->orderBy('starttime')->get()
+                : collect())
             return view('shows.showteachschedule', compact('schedules'));
         else return redirect('/');
     }
@@ -72,6 +72,7 @@ class ScheduleController extends Controller{
             return view('admin.manageschedules', compact('major', 'schedules', 'times', 'days', 'laoDays', 'thisweek', 'lastsunday', 'nextsunday'));
         }else return abort(403);
     }
+
     public function manageSchedulesDate($major_id, $date){
         if(Auth::user()->role == 'admin'){
             $major = Major::find($major_id);
@@ -104,10 +105,9 @@ class ScheduleController extends Controller{
             foreach ($times as $time) {
                 $starttime = $time['starttime'];
                 $endtime = $time['endtime'];
-                if($schedule = $major->schedules->toQuery()
-                            ->where('date', $date)
-                            ->where('starttime', $starttime)
-                            ->where('endtime', $endtime)->first())
+                if($schedule = ($sch = $major->schedules)->count()
+                        ? $sch->toQuery()->where('date', $date)->where('starttime', $starttime)->where('endtime', $endtime)->first()
+                        : '')
                     $schedules[$day][$starttime][$endtime] = $schedule;
             }
         }

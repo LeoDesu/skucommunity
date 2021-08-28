@@ -4,7 +4,7 @@
             ເພີ່ມວິຊາຮຽນ
         </button>
         <div class="modal fade" id="insert-subject-modal">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">ເພີ່ມວິຊາຮຽນ</h5>
@@ -14,7 +14,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group row">
-                            <input v-model="subject" class="form-control" name="name" placeholder="ວິຊາ" autocomplete="off" required>
+                            <label for="name" class="col-md-4 text-right col-form-label">ວິຊາ</label>
+                            <input v-model="subject" class="form-control col-md-6" name="name" placeholder="ວິຊາ" autocomplete="off" required>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -24,7 +24,7 @@
     </head>
     <body>
         <div id="app">
-            <nav class="navbar navbar-expand-md bg-main shadow-sm">
+            <nav class="navbar navbar-expand-md bg-main shadow-sm sticky-top">
                 <div class="container pt-1 pb-1">
                     <a class="navbar-brand" href="{{ url('/') }}" title="{{ config('app.name', 'Laravel') }}">
                         <img src="/storage/img/server/sku.png">
@@ -55,7 +55,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="/showschedule">ຕາຕະລາງ</a>
                                 </li>
-                                @if(Auth::user()->teachSchedules->count()? Auth::user()->teachSchedules->toQuery()->where('date', '>=', date('Y-m-d'))->get()->count():false)
+                                @if(($sch = Auth::user()->teachSchedules)->count()? $sch->toQuery()->where('date', '>=', date('Y-m-d'))->get()->count():false)
                                     <li class="nav-item">
                                         <a class="nav-link" href="/showteachschedule">ຕາຕະລາງສອນ</a>
                                     </li>

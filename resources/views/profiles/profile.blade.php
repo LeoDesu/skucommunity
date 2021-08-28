@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">ເພດ: {{ $user->gender }}</div>
-                        <div class="col-md-4">ເວັນເດືອນປີເກີດ: {{ $user->date_of_birth }}</div>
+                        <div class="col-md-4">ວັນເດືອນປີເກີດ: {{ $user->date_of_birth->format('d/m/Y') }}</div>
                         <div class="col-md-4">ທີ່ຢູ່: {{ $user->address }}</div>
                     </div>
                     <div class="row">
@@ -45,7 +45,7 @@
             </div>
 
 
-            @foreach($user->blogs as $blog)
+            @foreach(($b = $user->blogs)->count() ? $b->toQuery()->orderBy('created_at', 'desc')->get():[] as $blog)
 
             <div class="card mb-2">
                 <div class="card-header content-header d-flex justify-content-between" >

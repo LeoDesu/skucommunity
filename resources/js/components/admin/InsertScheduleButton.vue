@@ -4,7 +4,7 @@
           ເພີ່ມຊົ່ວໂມງຮຽນ
       </button>
       <div class="modal fade" id="insert-schedule-modal">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">ເພີ່ມຊົ່ວໂມງຮຽນ</h5>

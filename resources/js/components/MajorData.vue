@@ -5,7 +5,7 @@
             <label for="faculty" class="col-md-4 col-form-label text-md-right">ຄະນະ:</label>
             <div class="col-md-6">
                 <select id="faculty" class="form-control" v-model="selectedFaculty" @change="requestMajors(selectedFaculty)" required autofocus>
-                    <option v-for="faculty in faculties" :key="faculty">{{ faculty.faculty }}</option>
+                    <option v-for="faculty in faculties" :key="faculty.faculty">{{ faculty.faculty }}</option>
                 </select>
             </div>
         </div>
@@ -13,7 +13,7 @@
             <label for="major_id" class="col-md-4 col-form-label text-md-right">ສາຂາ:</label>
             <div class="col-md-6">
                 <select name="major_id[]" id="major_id" class="form-control p-0" v-model="selectedMajors" @mouseenter="requestSubjects()" @click="requestSubjects()" required multiple autofocus>
-                    <option v-for="major in majors" :key="major" :value="major.id">{{ major.name }}</option>
+                    <option v-for="(major, index) in majors" :key="index" :value="major.id">{{ major.name }}</option>
                 </select>
             </div>
         </div>
@@ -21,7 +21,7 @@
             <label for="subject" class="col-md-4 col-form-label text-md-right">ວິຊາ:</label>
             <div class="col-md-6">
                 <select id="subject" name="subject_id" class="form-control" @change="requestTeachers()" v-model="selectedSubject" required autofocus>
-                    <option v-for="subject in subjectOptions" :key="subject.id" :value="subject.id">{{ subject.name }}</option>
+                    <option v-for="(subject, index) in subjectOptions" :key="index" :value="subject.id">{{ subject.name }}</option>
                 </select>
             </div>
         </div>
@@ -29,7 +29,7 @@
             <label for="teacher" class="col-md-4 col-form-label text-md-right">ອາຈານ:</label>
             <div class="col-md-6">
                 <select @change="$emit('change-teacher', selectedTeacher)" id="teacher" name="user_id" class="form-control" v-model="selectedTeacher" required autofocus>
-                    <option v-for="teacher in teachers" :key="teacher.id" :value="teacher.id">{{ teacher.name }}</option>
+                    <option v-for="(teacher, index) in teachers" :key="index" :value="teacher.id">{{ teacher.name }}</option>
                 </select>
             </div>
         </div>
@@ -37,6 +37,9 @@
 </template>
 <script>
     export default {
+        props:[
+            'faculty'
+        ],
         data(){
             return{
                 faculties: [],
@@ -94,6 +97,10 @@
         mounted() {
             axios.get('/getfaculties').then( response => {
                 this.faculties = response.data;
+                if(this.faculty){
+                    this.selectedFaculty = this.faculty
+                    this.requestMajors(this.selectedFaculty)
+                }
             })
         }
     }
