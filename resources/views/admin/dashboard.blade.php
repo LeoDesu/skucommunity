@@ -37,6 +37,12 @@
                                     <div class="row mb-2">
                                         <manage-subject-button csrf="{{ $token }}" button-class="btn btn-info w-100 text-1em"/>
                                     </div>
+                                    <div class="row mb-2">
+                                        <manage-major-select-major csrf="{{ $token }}" element-class="w-100" button-class="btn-info text-1em w-100" />
+                                    </div>
+                                    <div class="row mb-2">
+                                        <a href="/show-teaching-info" class="btn btn-info w-100 text-1em">ຂໍ້ມູນການສອນ</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

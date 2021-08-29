@@ -89,6 +89,8 @@
                                         @if(Auth::user()->role == 'admin')
                                             <a href="/insertschedule" class="dropdown-item">ເພີ່ມຊົ່ວໂມງຮຽນ</a>
                                             <a href="/dashboard" class="dropdown-item">ແຜງຄວບຄຸມ</a>
+                                        @elseif(Auth::user()->role == 'teacher')
+                                            <a href="/show-teaching-info" class="dropdown-item">ຂໍ້ມູນການສອນ</a>
                                         @endif
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

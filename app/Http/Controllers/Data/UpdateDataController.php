@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Data;
 
 use App\Http\Controllers\Controller;
+use App\Models\Major;
 use App\Models\Schedule;
 use App\Models\ScheduleTime;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ class UpdateDataController extends Controller
 {
     function __construct()
     {
-        $this->middleware('role:admin')->only(['editSchedule', 'updateSchedule']);
+        $this->middleware('role:admin');
     }
     public function editSchedule(Schedule $schedule)
     {
@@ -50,6 +51,17 @@ class UpdateDataController extends Controller
             }
         }
         return redirect('/showschedule/'.$schedule->date->format('Y-m-d'));
+    }
+    
+    public function manageMajor(Major $major)
+    {
+        return view('admin.managemajor', compact('major'));
+    }
+    
+    public function updateQuota(Request $request, Major $major)
+    {
+        $major->subjects->find($request->subject_id)?->pivot->update(['quota' => $request->quota]);
+        return back();
     }
     
     //TODO: make methods for updating data
