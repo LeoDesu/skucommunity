@@ -4,6 +4,7 @@ use App\Http\Controllers\API\GetDataController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\API\DeleteDataController;
 use App\Http\Controllers\API\UpdateDataController;
 use App\Http\Controllers\Auth\AddUserController;
 use App\Http\Controllers\BlogController;
@@ -85,6 +86,7 @@ Route::post('/insertschedule', [InsertDataController::class, 'insertSchedule']);
 
 Route::get('/schedule/{schedule}/edit', [UpdateDataController::class, 'editSchedule']);
 Route::patch('/schedule/{schedule}', [UpdateDataController::class, 'updateSchedule']);
+Route::delete('/schedule/{schedule}', [DeleteDataController::class, 'deleteSchedule']);
 
 //API
 Route::get('/getfaculties', [GetDataController::class, 'faculties']);

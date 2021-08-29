@@ -1,0 +1,17 @@
+TODO: teacher can view their teaching subjects
+TODO: can view major's info(subjects, quota, students, ... )
+TODO: prevent user to add collided schedule and show proper warning
+TODO: teacher can add schedule on empty
+TODO: view notification history and can remove
+TODO: make mention notification
+TODO: update or remove users
+TODO: move news tab to notification instead and add mark on blogs that posted by admin
+TODO: view, update or remove:
+   - majors
+   - subjects
+   - classroom
+TODO: implement export schedule to pdf
+   - can select multi majors for admin
+   - teacher can export teaching schedule
+TODO: following system and receive notification from followed people
+OPTIONAL: add blogs status to blog list (important, very important, ...)

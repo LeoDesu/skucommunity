@@ -35,27 +35,27 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
+                            <li class="nav-item m-0">
                                 <a class="nav-link" href="{{ route('trending') }}">ກະທູ້ທີ່ນິຍົມ</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item m-0">
                                 <a class="nav-link" href="{{ route('latest') }}">ກະທູ້ລ່າສຸດ</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item m-0">
                                 <a class="nav-link" href="{{ route('announcements') }}">ແຈ້ງການ</a>
                             </li>
                             @auth
-                                <li class="nav-item">
+                                <li class="nav-item m-0">
                                     <a class="nav-link" href="/myclass">ຫ້ອງຮຽນ</a>
                                 </li>
-                                {{-- <li class="nav-item">
+                                {{-- <li class="nav-item m-0">
                                     <a class="nav-link" href="#">ອາຈານປະຈໍາວິຊາ</a>
                                 </li> --}}
-                                <li class="nav-item">
+                                <li class="nav-item m-0">
                                     <a class="nav-link" href="/showschedule">ຕາຕະລາງ</a>
                                 </li>
                                 @if(($sch = Auth::user()->teachSchedules)->count()? $sch->toQuery()->where('date', '>=', date('Y-m-d'))->get()->count():false)
-                                    <li class="nav-item">
+                                    <li class="nav-item m-0">
                                         <a class="nav-link" href="/showteachschedule">ຕາຕະລາງສອນ</a>
                                     </li>
                                 @endif
@@ -66,11 +66,11 @@
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
                             @guest
-                                <li class="nav-item">
+                                <li class="nav-item m-0">
                                     <a class="nav-link" href="{{ route('login') }}">ເຂົ້າສູ່ລະບົບ</a>
                                 </li>
                                 @if (Route::has('register'))
-                                    <li class="nav-item">
+                                    <li class="nav-item m-0">
                                         <a class="nav-link" href="{{ route('register') }}">ລົງທະບຽນ</a>
                                     </li>
                                 @endif
@@ -78,7 +78,7 @@
                                 <li class="nav-link">
                                     <notification-bell user-id="{{ Auth::user()->id }}" />
                                 </li>
-                                <li class="nav-item dropdown d-flex align-items-center">
+                                <li class="nav-item m-0 dropdown d-flex align-items-center">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }}
                                     </a>

@@ -12,7 +12,7 @@
                     </div>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body overflowx-scroll">
                     <table class="table table-bordered table-striped">
                         <tr class="1em">
                             <th>ວັນທີ</th>

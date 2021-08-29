@@ -36,3 +36,6 @@
 .pointer{
     cursor: pointer;
 }
+.overflowx-scroll{
+    overflow-x: scroll;
+}

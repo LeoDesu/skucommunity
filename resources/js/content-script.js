@@ -20,9 +20,9 @@ window.clearPreviewImage = function(event, inputId = 'image_path', target = 'pre
     clearBtn.style.display = 'none';
     document.getElementById(oldTarget).value = '';
 }
-window.submitDeleteForm = function(event, title = "ທ່ານແນ່ໃຈບໍວ່າຕ້ອງການດໍາເນີນການຕໍ່?", formId = 'delete-form'){
+window.submitDeleteForm = function(event, text = "ທ່ານແນ່ໃຈບໍວ່າຕ້ອງການດໍາເນີນການຕໍ່?", formId = 'delete-form'){
     event.preventDefault();
-    swal({title: title, icon: 'warning', buttons: true, dangerMode: true})
+    swal({text: text, icon: 'warning', buttons: true, dangerMode: true})
         .then( res => {
             if(res){
                 document.getElementById(formId).submit();

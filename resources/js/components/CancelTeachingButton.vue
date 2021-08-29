@@ -1,6 +1,6 @@
 <template>
     <button class="btn btn-danger btn-c-padding bd-radius-2" @click="cancelAlert">
-        ເລື່ອນການສອນ
+        ຍົກເລີກ
     </button>
 </template>
 <script>
@@ -19,7 +19,7 @@ export default {
                         value: null
                     },
                     confirm:{
-                        text: "ເລື່ອນ",
+                        text: "ແນ່ໃຈ",
                         value: true,
                         dangerMode: true
                     }

@@ -1934,7 +1934,7 @@ __webpack_require__.r(__webpack_exports__);
             value: null
           },
           confirm: {
-            text: "ເລື່ອນ",
+            text: "ແນ່ໃຈ",
             value: true,
             dangerMode: true
           }
@@ -48621,7 +48621,7 @@ var render = function() {
       staticClass: "btn btn-danger btn-c-padding bd-radius-2",
       on: { click: _vm.cancelAlert }
     },
-    [_vm._v("\n    ເລື່ອນການສອນ\n")]
+    [_vm._v("\n    ຍົກເລີກ\n")]
   )
 }
 var staticRenderFns = []
@@ -50205,7 +50205,7 @@ var render = function() {
         class: _vm.buttonClass,
         attrs: { "data-toggle": "modal", "data-target": "#select-major-modal" }
       },
-      [_vm._v("\n        ແກ້ໄຂຕາຕະລາງ\n    ")]
+      [_vm._v("\n        ເບິ່ງ ແລະ ແກ້ໄຂຕາຕະລາງ\n    ")]
     ),
     _vm._v(" "),
     _c(
@@ -50260,7 +50260,7 @@ var staticRenderFns = [
       [
         _c("h5", { staticClass: "modal-title text-center" }, [
           _vm._v(
-            "\n                        ເລືອກສາຂາເພິ່ອແກ້ໄຂຕາຕະລາງ\n                    "
+            "\n                        ເລືອກສາຂາເພິ່ອເບິ່ງ ແລະ ແກ້ໄຂຕາຕະລາງ\n                    "
           )
         ]),
         _vm._v(" "),
@@ -64362,11 +64362,11 @@ window.clearPreviewImage = function (event) {
 };
 
 window.submitDeleteForm = function (event) {
-  var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "ທ່ານແນ່ໃຈບໍວ່າຕ້ອງການດໍາເນີນການຕໍ່?";
+  var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "ທ່ານແນ່ໃຈບໍວ່າຕ້ອງການດໍາເນີນການຕໍ່?";
   var formId = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'delete-form';
   event.preventDefault();
   swal({
-    title: title,
+    text: text,
     icon: 'warning',
     buttons: true,
     dangerMode: true

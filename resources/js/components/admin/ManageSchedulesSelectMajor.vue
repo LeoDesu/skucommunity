@@ -1,14 +1,14 @@
 <template>
     <div :class="elementClass">
         <button class="btn" :class="buttonClass" data-toggle="modal" data-target="#select-major-modal">
-            ແກ້ໄຂຕາຕະລາງ
+            ເບິ່ງ ແລະ ແກ້ໄຂຕາຕະລາງ
         </button>
         <div class="modal fade" id="select-major-modal">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header d-flex justify-content-center">
                         <h5 class="modal-title text-center">
-                            ເລືອກສາຂາເພິ່ອແກ້ໄຂຕາຕະລາງ
+                            ເລືອກສາຂາເພິ່ອເບິ່ງ ແລະ ແກ້ໄຂຕາຕະລາງ
                         </h5>
                         <button class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>

@@ -56,13 +56,19 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn btn-success mr-2 rounded">
                                     ແກ້ໄຂ
+                                </button>
+                                <button class="btn btn-danger rounded" onclick="submitDeleteForm(event, 'ທ່ານແນ່ໃຈບໍວ່າຕ້ອງການລົບຊົ່ວໂມງຮຽນນີ້?')">
+                                    ລົບ
                                 </button>
                             </div>
                         </div>
                     </form>
-                    
+                    <form id="delete-form" action="/schedule/{{ $schedule->id }}" method="POST" class="d-none">
+                        @csrf
+                        @method('delete')
+                    </form>
                 </div>
             </div>
         </div>

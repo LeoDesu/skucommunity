@@ -113,7 +113,7 @@ class BlogController extends Controller
         return Votes::where('blog_id', $blog->id)->where('downvote', 1)->count();
     }
 
-    public function comment(Blog $blog, Request $request){
+    public function comment(Request $request, Blog $blog){
         Comment::create([
             'user_id' => Auth::user()->id,
             'blog_id' => $blog->id,
