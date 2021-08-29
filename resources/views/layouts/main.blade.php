@@ -15,7 +15,6 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="{{ asset('js/bootstrap.js') }} "></script>
-        <script src="{{ asset('js/content-script.js') }} "></script>
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/lux.css') }}">
@@ -76,7 +75,10 @@
                                     </li>
                                 @endif
                             @else
-                                <li class="nav-item dropdown">
+                                <li class="nav-link">
+                                    <notification-bell user-id="{{ Auth::user()->id }}" />
+                                </li>
+                                <li class="nav-item dropdown d-flex align-items-center">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }}
                                     </a>

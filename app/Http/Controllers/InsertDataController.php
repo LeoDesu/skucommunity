@@ -72,6 +72,17 @@ class InsertDataController extends Controller
             if(!$schedule->majors->contains($id))
                 $schedule->majors()->attach($id);
         }
+        $schedule = Schedule::find($schedule->id);
+        $date = date('Y-m-d', strtotime($request->date));
+        foreach($schedule->majors as $major){
+            foreach($major->users as $user){
+                $user->notifications()->create([
+                    'content' => 'ໄດ້ມີຊົ່ວໂມງຮຽນຖືກເພີ່ມເຂົ້າມາໃໝ່ສໍາລັບວັນທີ '.$date,
+                    'reference' => '/showschedule/'.$date,
+                    'read' => false
+                ]);
+            }
+        }
         return redirect('/dashboard');
     }
 }

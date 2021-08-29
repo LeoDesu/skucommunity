@@ -38,6 +38,17 @@ class UpdateDataController extends Controller
         foreach ($request->major_id as $id) {
             $schedule->majors()->attach($id);
         }
+        $schedule = Schedule::find($schedule->id);
+        $date = date('Y-m-d', strtotime($request->date));
+        foreach($schedule->majors as $major){
+            foreach($major->users as $user){
+                $user->notifications()->create([
+                    'content' => 'ໄດ້ມີການແກ້ໄຂຕາລາງຮຽນສໍາລັບວັນທີ '.$date,
+                    'reference' => '/showschedule/'.$date,
+                    'read' => false
+                ]);
+            }
+        }
         return redirect('/showschedule/'.$schedule->date->format('Y-m-d'));
     }
     

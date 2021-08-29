@@ -73,6 +73,10 @@ class User extends Authenticatable
     public function teachSubjects(){
         return $this->belongsToMany(Subject::class);
     }
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 
     public static function boot(){
         parent::boot();

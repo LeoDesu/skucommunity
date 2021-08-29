@@ -10,6 +10,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CreateBlogController;
 
 use App\Http\Controllers\InsertDataController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ScheduleController;
 
 /*
@@ -93,6 +94,8 @@ Route::get('/getclassrooms/{building}', [GetDataController::class, 'classrooms']
 Route::get('/getsubjects/{major_id}', [GetDataController::class, 'subjects']);
 Route::get('/getteachers/{subject_id}', [GetDataController::class, 'teachers']);
 Route::get('/getuser/{id}', [GetDataController::class, 'user']);
+Route::get('/getunreadnotifications/{user}', [NotificationController::class, 'getUnread']);
+Route::post('/readnotification', [NotificationController::class, 'read']);
 //search
 Route::get('/searchusers/{search}', [GetDataController::class, 'searchusers']);
 Route::get('/searchteachers/{search}', [GetDataController::class, 'searchteachers']);
