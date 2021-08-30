@@ -1,12 +1,12 @@
 @extends('layouts.main')
-@section('title', 'ເພີ່ມຜູ້ໃຊ້')
+@section('title', 'ແກ້ໄຂຜູ້ໃຊ້')
 
 @section('content')
 <div class="container pt-3">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('ເພີ່ມຜູ້ໃຊ້') }}</div>
+                <div class="card-header">{{ __('ແກ້ໄຂຜູ້ໃຊ້') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="/adduser">
@@ -143,7 +143,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-success">
-                                    {{ __('ເພີ່ມ') }}
+                                    {{ __('ບັນທຶກ') }}
                                 </button>
                             </div>
                         </div>

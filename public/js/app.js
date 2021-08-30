@@ -3249,7 +3249,19 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       if (this.search == '') {
-        this.users = [];
+        if (this.teachers && this.students) axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/allusers').then(function (res) {
+          _this.users = res.data;
+        })["catch"](function () {
+          _this.users = [];
+        });else if (this.teachers) axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/allteachers').then(function (res) {
+          _this.users = res.data;
+        })["catch"](function () {
+          _this.users = [];
+        });else if (this.students) axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/allstudents').then(function (res) {
+          _this.users = res.data;
+        })["catch"](function () {
+          _this.users = [];
+        });
         return;
       }
 
@@ -3270,6 +3282,15 @@ __webpack_require__.r(__webpack_exports__);
     gotoLink: function gotoLink(url) {
       window.location = url;
     }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/allusers').then(function (res) {
+      _this2.users = res.data;
+    })["catch"](function () {
+      _this2.users = [];
+    });
   }
 });
 
@@ -50257,14 +50278,20 @@ var render = function() {
       {
         staticClass: "btn",
         class: _vm.buttonClass,
-        attrs: { "data-toggle": "modal", "data-target": "#select-major-modal" }
+        attrs: {
+          "data-toggle": "modal",
+          "data-target": "#manage-major-select-major-modal"
+        }
       },
       [_vm._v("\n        ເບິ່ງ ແລະ ແກ້ໄຂຂໍ້ມູນຂອງສາຂາ\n    ")]
     ),
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "modal fade", attrs: { id: "select-major-modal" } },
+      {
+        staticClass: "modal fade",
+        attrs: { id: "manage-major-select-major-modal" }
+      },
       [
         _c("div", { staticClass: "modal-dialog modal-lg" }, [
           _c("div", { staticClass: "modal-content" }, [

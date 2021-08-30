@@ -58,6 +58,7 @@ class ScheduleController extends Controller{
     public function manageSchedules($major_id){
         if(Auth::user()->role == 'admin'){
             $major = Major::find($major_id);
+            $update = true;
             //setup date for a week to show on schedule
             $days = self::DAYS;
             $laoDays = self::LAODAYS;$thisweek = $this->thisweek(date('Y-m-d'));
@@ -69,7 +70,7 @@ class ScheduleController extends Controller{
             //setup times to show on schedule
             $times = $this->getTimesIn($thisweek, $major);
             $schedules = $this->getWeekScheduleForMajor($major, $thisweek, $times);
-            return view('admin.manageschedules', compact('major', 'schedules', 'times', 'days', 'laoDays', 'thisweek', 'lastsunday', 'nextsunday'));
+            return view('admin.manageschedules', compact('major', 'schedules', 'times', 'days', 'laoDays', 'thisweek', 'lastsunday', 'nextsunday', 'update'));
         }else return abort(403);
     }
 

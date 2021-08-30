@@ -51,6 +51,21 @@ class GetDataController extends Controller
             $i->major = Major::find($i->major_id);
         });
     }
+    public function allusers(){
+        return User::orderBy('name')->get()->each(function($i){
+            $i->major = Major::find($i->major_id);
+        });
+    }
+    public function allteachers(){
+        return User::where('role', 'teacher')->orderBy('name')->get()->each(function($i){
+            $i->major = Major::find($i->major_id);
+        });
+    }
+    public function allstudents(){
+        return User::where('role', 'student')->orderBy('name')->get()->each(function($i){
+            $i->major = Major::find($i->major_id);
+        });
+    }
     public function searchsubjects($search){
         return Subject::where('name', 'like', $search == ''? '':"%$search%")->orderBy('name')->get();
     }

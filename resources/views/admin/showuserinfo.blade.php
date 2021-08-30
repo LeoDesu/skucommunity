@@ -61,6 +61,11 @@
                             <td class="pt-2 pb-2">{{ $user->email }}</td>
                         </tr>
                     </table>
+                    <button onclick="submitDeleteForm(event, 'ທ່ານແນ່ໃນບໍວ່າຕ້ອງການລົບຂໍ້ມູນຂອງຜູ້ໃຊ້ຄົນນີ້?')" class="btn btn-danger">ລົບຂໍ້ມູນ</button>
+                    <form id="delete-form" action="/deleteuser/{{ $user->id }}" method="POST">
+                        @method('delete')
+                        @csrf
+                    </form>
                 </div>
             </div>
         </div>

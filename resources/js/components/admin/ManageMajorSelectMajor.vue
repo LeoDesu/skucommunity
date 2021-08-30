@@ -1,9 +1,9 @@
 <template>
     <div :class="elementClass">
-        <button class="btn" :class="buttonClass" data-toggle="modal" data-target="#select-major-modal">
+        <button class="btn" :class="buttonClass" data-toggle="modal" data-target="#manage-major-select-major-modal">
             ເບິ່ງ ແລະ ແກ້ໄຂຂໍ້ມູນຂອງສາຂາ
         </button>
-        <div class="modal fade" id="select-major-modal">
+        <div class="modal fade" id="manage-major-select-major-modal">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header d-flex justify-content-center">

@@ -1,9 +1,8 @@
-TODO: update or remove users
-TODO: view, update or remove:
-   - majors
+TODO: implement blog search
+TODO: update:
+   - users
    - subjects
    - classroom
-TODO: implement blog search
 TODO: prevent user to add collided schedule and show proper warning
 TODO: teacher can add schedule on empty
 TODO: make mention notification

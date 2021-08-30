@@ -61,6 +61,8 @@ Route::get('/showschedule', [ScheduleController::class, 'index']);
 Route::get('/showteachschedule', [ScheduleController::class, 'showTeach']);
 Route::get('/showtodayschedule', [ScheduleController::class, 'showToday']);
 Route::get('/show-teaching-info', [ShowDataController::class, 'showTeaching']);
+Route::get('/subjectinfos', [ShowDataController::class, 'showSubjects']);
+Route::get('/classroominfos', [ShowDataController::class, 'showClassrooms']);
 
 //admin
 Route::get('/dashboard', [AdminController::class, 'dashboard']);
@@ -91,6 +93,9 @@ Route::get('/managemajor/{major}', [UpdateDataController::class, 'manageMajor'])
 Route::post('/update-quota/{major}', [UpdateDataController::class, 'updateQuota']);
 
 Route::delete('/schedule/{schedule}', [DeleteDataController::class, 'deleteSchedule']);
+Route::delete('/deleteuser/{user}', [DeleteDataController::class, 'deleteUser']);
+Route::delete('/deletesubject/{subject}', [DeleteDataController::class, 'deleteSubject']);
+Route::delete('/deleteclassroom/{classroom}', [DeleteDataController::class, 'deleteClassroom']);
 
 //API
 Route::get('/getfaculties', [GetDataController::class, 'faculties']);
@@ -103,6 +108,9 @@ Route::get('/getuser/{id}', [GetDataController::class, 'user']);
 Route::get('/getunreadnotifications/{user}', [NotificationController::class, 'getUnread']);
 Route::post('/readnotification', [NotificationController::class, 'read']);
 Route::post('/calcelteaching/{id}', [ScheduleController::class, 'cancelTeaching']);
+Route::get('/allusers', [GetDataController::class, 'allusers']);
+Route::get('/allteachers', [GetDataController::class, 'allteachers']);
+Route::get('/allstudents', [GetDataController::class, 'allstudents']);
 
 //search
 Route::get('/searchusers/{search}', [GetDataController::class, 'searchusers']);

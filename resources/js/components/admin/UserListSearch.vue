@@ -46,7 +46,24 @@ export default {
     methods:{
         searchUsers: function(){
             if(this.search == '') {
-                this.users = []
+                if(this.teachers && this.students)
+                    axios.get('/allusers').then( res => {
+                        this.users = res.data
+                    }).catch( () => {
+                        this.users = []
+                    })
+                else if(this.teachers)
+                    axios.get('/allteachers').then( res => {
+                        this.users = res.data
+                    }).catch( () => {
+                        this.users = []
+                    })
+                else if(this.students)
+                    axios.get('/allstudents').then( res => {
+                        this.users = res.data
+                    }).catch( () => {
+                        this.users = []
+                    })
                 return
             }
             if(this.teachers && this.students)
@@ -71,6 +88,13 @@ export default {
         gotoLink: function(url){
             window.location = url
         }
+    },
+    mounted(){
+        axios.get('/allusers').then( res => {
+                this.users = res.data
+            }).catch( () => {
+                this.users = []
+            })
     }
 }
 </script>

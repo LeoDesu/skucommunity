@@ -60,6 +60,8 @@
                                     <div class="row mb-2">
                                         <insert-classroom-button csrf="{{ $token }}" button-class="btn btn-info w-100 text-1em"/>
                                     </div>
+                                    <div class="row mb-2"><a href="/subjectinfos" class="btn btn-info text-1em w-100">ຂໍ້ມູນວິຊາຮຽນ</a></div>
+                                    <div class="row mb-2"><a href="/classroominfos" class="btn btn-info text-1em w-100">ຂໍ້ມູນຫ້ອງຮຽນ</a></div>
                                 </div>
                             </div>
                         </div>

@@ -32,7 +32,11 @@
                         <tr>
                             <td class="text-center">{{ $time['starttime'] }}<br>ເຖິງ<br>{{ $time['endtime']  }}</td>
                             @foreach($days as $day => $value)
-                                <td class="text-center @if($day == 'Sun') text-danger @endif">
+                                <td class="text-center @if($day == 'Sun') text-danger @endif"
+                                    @if($update && isset($schedules[$day][$time['starttime']][$time['endtime']]))
+                                        onclick="updateSchedule({{ $schedules[$day][$time['starttime']][$time['endtime']]->id }})"
+                                        style="cursor: pointer;"
+                                    @endif >
                                     @if(isset($schedules[$day][$time['starttime']][$time['endtime']]))
                                         {{ $schedules[$day][$time['starttime']][$time['endtime']]->subject->name }}<br>
                                         {{ $schedules[$day][$time['starttime']][$time['endtime']]->classroom->name }}<br>
