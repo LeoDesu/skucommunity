@@ -69,11 +69,11 @@
                                 <li class="nav-item m-0">
                                     <a class="nav-link" href="{{ route('login') }}">ເຂົ້າສູ່ລະບົບ</a>
                                 </li>
-                                @if (Route::has('register'))
+                                {{-- @if (Route::has('register'))
                                     <li class="nav-item m-0">
                                         <a class="nav-link" href="{{ route('register') }}">ລົງທະບຽນ</a>
                                     </li>
-                                @endif
+                                @endif --}}
                             @else
                                 <li class="nav-link">
                                     <notification-bell user-id="{{ Auth::user()->id }}" />

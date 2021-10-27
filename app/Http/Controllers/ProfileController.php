@@ -15,7 +15,7 @@ class ProfileController extends Controller
         $this->authorize('edit', $user->profile);
         return view('profiles.edit', compact('user'));
     }
-    public function update(User $user, Request $request){
+    public function update(Request $request, User $user){
         $this->authorize('edit', $user->profile);
         if($request->image || $request->about){
             if($request->image){

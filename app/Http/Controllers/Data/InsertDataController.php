@@ -58,7 +58,7 @@ class InsertDataController extends Controller
         $role = Auth::user()->role;
         if($role != 'admin' && $role != 'teacher') return redirect('/');
         if(($sch = ScheduleTime::where('from', $request->starttime)->get())->count())
-            $endtime = $sch->first()?->to;
+            if($sch = $sch->first()) $endtime = $sch->to;
         else
             $endtime = '00:00:00';
         $schedule = Schedule::create([
